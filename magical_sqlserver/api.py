@@ -102,7 +102,10 @@ class SQLServer:
         values = []
         for key in data:
             columns.append(key)
-            values.append("'" + str(data[key]) + "'")
+            if data[key] is None:
+                values.append("Null")
+            else:
+                values.append("'" + str(data[key]) + "'")
         sql = (
             f"insert into {table} ("
             + ",".join(columns)
@@ -119,7 +122,10 @@ class SQLServer:
         values = []
         where = []
         for key in data:
-            values.append(str(key) + "=" + "'" + str(data[key]) + "'")
+            if data[key] is None:
+                values.append(str(key) + "= Null")
+            else:
+                values.append(str(key) + "=" + "'" + str(data[key]) + "'")
         if condition is None:
             sql = f"update {table} set " + ",".join(values)
         else:
