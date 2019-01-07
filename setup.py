@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="magical_sqlserver",
-    version="0.1.1",
+    version="0.3.0",
     author="Brenno Flavio de Almeida",
     author_email="brenno.flavio412@gmail.com",
     description="Microsoft SQL Server for applications, like magic",

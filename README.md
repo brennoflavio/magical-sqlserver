@@ -73,6 +73,26 @@ with SQLServer(user, host, password, my_database) as sql:
 
 You can close your connection manually with ```sql.close()``` method too.
 
+### As a decorator
+
+You may want to decorate your funciton with this module. To to that, simply use the ```provide_session``` module. It will try replace sql argument if it exists in your funcion, or add a kwarg argument called ```sql```. This decorator opens an close an SQL Server connection for you. Example:
+
+```
+from magical_sqlserver import provide_session
+
+@provide_session(user, host, password, my_database)
+def awesome_functtion(sql=None):
+  sql.select("users")
+```
+
+Or with kwargs:
+```
+@provide_session(user, host, password, my_database)
+def awesome_functtion(**kwargs):
+  sql = kwargs["sql"]
+  sql.select("users")
+```
+
 ## Writing data
 
 ### Single records
