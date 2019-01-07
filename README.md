@@ -81,14 +81,14 @@ You may want to decorate your funciton with this module. To to that, simply use 
 from magical_sqlserver import provide_session
 
 @provide_session(user, host, password, my_database)
-def awesome_functtion(sql=None):
+def awesome_function(sql=None):
   sql.select("users")
 ```
 
 Or with kwargs:
 ```
 @provide_session(user, host, password, my_database)
-def awesome_functtion(**kwargs):
+def awesome_function(**kwargs):
   sql = kwargs["sql"]
   sql.select("users")
 ```
