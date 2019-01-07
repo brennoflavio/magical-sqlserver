@@ -1,10 +1,10 @@
 # Magical SQL Server
 
-Microsoft SQL Server integration for applications, like magic.
+A tool that integrates Microsoft SQL Server into applications like magic.
 
 ## What is this?
 
-Do you have some application that needs to consume data stored on SQL Server Database, or needs to post data into this database? Magical SQL Server will handle that for you easily.
+Do you have an application that needs to consume data stored on SQL Server Database, or needs to post data into this database? Magical SQL Server will handle that for you easily.
 
 ## Requirements
 
@@ -18,14 +18,14 @@ Bulk insert method uses BCP to copy multiple rows efficiently. See [Microsoft Do
 
 ## Usage
 
-Let's say that you have some table called ```my_database.dbo.users```:
+Let's say that you have a table called ```my_database.dbo.users```:
 
 id | name | team
 -- | ----- | ----
 1 | example | example
 2 | new_user | users
 
-To retrieve all data from table:
+To retrieve all the data from the table:
 ```
 from magical_sqlserver import SQLServer
 sql = SQLServer (
@@ -64,7 +64,7 @@ With result ```{"name":"example"}```.
 
 ### With Context
 
-You may use ```with``` statement so Magical SQL Server will open and closes a connection for you as your statement ends:
+You may use ```with``` statement then Magical SQL Server will open and close a connection for you as your statement ends:
 
 ```
 with SQLServer(user, host, password, my_database) as sql:
@@ -91,7 +91,6 @@ Or with kwargs:
 def awesome_functtion(**kwargs):
   sql = kwargs["sql"]
   sql.select("users")
-```
 
 ## Writing data
 
@@ -115,10 +114,10 @@ You can delete records too:
 sql.delete("users", {"id":2, "name":"new_user"})
 ```
 
-It's relevant to say that all conditions are additive. For example, if your update has condition ```{"id": 1, "name": "new_user"}```, this module will build an sql query that has ```id = 1 and name = 'new_user'``` and will try this against the database. In the table above, no data will be updated.
+It's important to say that all conditions are additive. For example, if your update has condition ```{"id": 1, "name": "new_user"}```, this module will build an sql query that has ```id = 1 and name = 'new_user'``` and will try this against the database. In the table above, no data will be updated.
 
 ### Bulk Insert
-Simply pass an list of dicts to ```bulk_insert``` method. It will transform it to csv temporary files and copy it to table with BCP method. See requirements for more details.
+Simply pass a list of dicts to ```bulk_insert``` method. It will transform it to csv temporary files and copy it to table with BCP method. See requirements for more details.
 
 ```
 data = [{"id":4, "name":"me"},{"id":5, "name":"you"}]
@@ -127,7 +126,7 @@ sql.bulk_insert("users", data)
 ```
 
 ## Other Stuff
-You can run generic queries with method query:
+You can run generic queries with the method query:
 ```
 data = sql.query("select top(10) * from my_table join users on my_table.id = users.id")
 ```
