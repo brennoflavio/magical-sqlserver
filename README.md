@@ -91,6 +91,7 @@ Or with kwargs:
 def awesome_functtion(**kwargs):
   sql = kwargs["sql"]
   sql.select("users")
+```
 
 ## Writing data
 
