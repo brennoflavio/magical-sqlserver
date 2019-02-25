@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="magical_sqlserver",
-    version="0.3.0",
+    version="0.4.0",
     author="Brenno Flavio de Almeida",
     author_email="brenno.flavio412@gmail.com",
     description="Microsoft SQL Server for applications, like magic",
@@ -18,4 +18,5 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
+    install_requires=["pymssql", ],
 )

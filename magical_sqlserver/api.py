@@ -229,3 +229,28 @@ class SQLServer:
 
     def __exit__(self, type, value, traceback):
         return self.close()
+
+    def select_distinct(self, table, columns="*", condition=None):
+        """
+        Select distinct generic results from sql server table, returning them as dict
+        """
+        if condition is None:
+            sql = (
+                "select distinct"
+                + ",".join(columns)
+                + f" from\
+                {table} (nolock)"
+            )
+        else:
+            where = []
+            for key in condition:
+                where.append(str(key) + "=" + "'" + str(condition[key]) + "'")
+            sql = (
+                "select "
+                + ",".join(columns)
+                + f" from {table} where "
+                + " and ".join(where)
+            )
+        cursor = self._connection.cursor()
+        cursor.execute(sql)
+        return cursor.fetchall()
